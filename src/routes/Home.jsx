@@ -15,7 +15,7 @@ export const Home = () => {
                 </NavLink>
                 <p className="text-white font-bold md:text-[20px] text-[20px] ">LÍNEA DE DENUNCIA</p>
             </div>
-            <div className='flex flex-col md:flex-row h-[70svh] md:h-[90svh] justify-center items-center gap-10'>
+            <div className='flex flex-col md:flex-row h-[70svh] md:h-[80svh] justify-center items-center gap-10'>
                 <NavLink to="/denuncia">
                     <button className='bg-gray-300  rounded p-3 w-[250px] text-gray-800'>
                         <p>Registrar denuncia</p>

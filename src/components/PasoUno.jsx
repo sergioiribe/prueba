@@ -17,10 +17,10 @@ export const PasoUno = () => {
                         value={formData.id_empresa}
                         onChange={handleChange}
                     >
-                        <option value={0}>Selecciona una empresa</option>
-                        <option value={1}>Afore Coppel</option>
-                        <option value={2}>BanCoppel</option>
-                        <option value={3}>Coppel</option>
+                        <option className='p-2' value={0}>Selecciona una empresa</option>
+                        <option className='p-2' value={1}>Afore Coppel</option>
+                        <option className='p-2' value={2}>BanCoppel</option>
+                        <option className='p-2' value={3}>Coppel</option>
                     </select>
                 </div>
 
@@ -33,10 +33,10 @@ export const PasoUno = () => {
                         value={formData.id_pais}
                         onChange={handleChange}
                     >
-                        <option value={0}>Selecciona un país</option>
-                        <option value={1}>Argentina</option>
-                        <option value={2}>Estados Unidos</option>
-                        <option value={3}>México</option>
+                        <option className='p-2' value={0}>Selecciona un país</option>
+                        <option className='p-2' value={1}>Argentina</option>
+                        <option className='p-2' value={2}>Estados Unidos</option>
+                        <option className='p-2' value={3}>México</option>
                     </select>
                 </div>
 
@@ -50,8 +50,8 @@ export const PasoUno = () => {
                             value={formData.id_estado}
                             onChange={handleChange}
                         >
-                            <option value={0}>Selecciona un estado</option>
-                            <option value={1}>Buenos Aires</option>
+                            <option className='p-2' value={0}>Selecciona un estado</option>
+                            <option className='p-2' value={1}>Buenos Aires</option>
                         </select>
                     </div>
                 )}
@@ -64,8 +64,8 @@ export const PasoUno = () => {
                             value={formData.id_estado}
                             onChange={handleChange}
                         >
-                            <option value={0}>Selecciona un estado</option>
-                            <option value={2}>California</option>
+                            <option className='p-2' value={0}>Selecciona un estado</option>
+                            <option className='p-2' value={2}>California</option>
                         </select>
                     </div>
                 )}
@@ -78,10 +78,10 @@ export const PasoUno = () => {
                             value={formData.id_estado}
                             onChange={handleChange}
                         >
-                            <option value={0}>Selecciona un estado</option>
-                            <option value={3}>Aguascalientes</option>
-                            <option value={4}>Campeche</option>
-                            <option value={5}>Cdmx</option>
+                            <option className='p-2' value={0}>Selecciona un estado</option>
+                            <option className='p-2' value={3}>Aguascalientes</option>
+                            <option className='p-2' value={4}>Campeche</option>
+                            <option className='p-2' value={5}>Cdmx</option>
                         </select>
                     </div>
                 )}

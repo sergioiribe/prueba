@@ -131,7 +131,7 @@ export const PortalAdministrador = () => {
                 </div>
 
                 {/* Columna Derecha: Folios Finalizados/Cancelados */}
-                <div className="w-full md:w-[45%] flex flex-col items-center gap-5 text-sm md:text-base md:p-2 md:rounded">
+                <div className="w-full md:w-[45%] flex flex-col items-center gap-5 text-sm md:text-base md:p-2 md:rounded px-2">
                     <h2 className="font-bold text-lg">Folios finalizados / cancelados</h2>
                     {folios.filter(folio => folio.estatus === 'Finalizada' || folio.estatus === 'Cancelada').map((folio) => (
                         <div key={folio.id_denuncia} className="w-full flex flex-row bg-gray-200 justify-around md:border-black md:border-2 p-2 rounded-md">

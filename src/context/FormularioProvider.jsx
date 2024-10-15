@@ -47,6 +47,20 @@ export const FormularioProvider = ({ children }) => {
             return;
         }
 
+        //validar fecha_hechos no sea mayor al dia de hoy
+        // Obtener la fecha de hoy en formato YYYY-MM-DD
+        const today = new Date().toISOString().split('T')[0];
+
+        // Validar que la fecha de los hechos no sea mayor a la fecha actual
+        if (formData.fecha_hechos > today) {
+            Swal.fire({
+                icon: 'error',
+                text: 'La fecha de los hechos no puede ser mayor al día de hoy',
+                confirmButtonColor: '#3085d6',
+            });
+            return;
+        }
+
         // Validar que las contraseñas coincidan
         if (formData.contrasena !== formData.confirmContrasena) {
             Swal.fire({
