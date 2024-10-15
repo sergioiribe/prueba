@@ -10,7 +10,7 @@ export const PasoTres = () => {
                 <div className='w-full flex flex-col'>
                     <label className='px-3 py-2'>Detalle de la denuncia</label>
                     <textarea
-                        className='outline-blue-500 rounded text-center p-2 border-gray-300 border-2 resize-none'
+                        className='outline-blue-500 rounded text-center p-2 border-gray-300 border-2 resize-none text-sm md:text-base'
                         name="detalle"
                         value={formData.detalle}
                         onChange={handleChange}
@@ -21,12 +21,13 @@ export const PasoTres = () => {
                 <div className='w-full flex flex-col'>
                     <label className="px-3 py-2">Fecha en la que sucedieron los hechos</label>
                     <input
+                        placeholder="Escoge una fecha"
                         type="date"
                         name="fecha_hechos"
                         value={formData.fecha_hechos}
                         onChange={handleChange}
-                        max={new Date().toLocaleDateString('en-CA')} // Fecha actual en formato 'YYYY-MM-DD' considerando la zona horaria local
-                        className="w-full px-3 py-2 border rounded outline-blue-500"
+                        max={new Date().toLocaleDateString('en-CA')}
+                        className="w-full px-3 py-2 border border-gray-300 rounded outline-blue-500 text-sm md:text-base bg-white appearance-none"
                         required
                     />
                 </div>
@@ -37,7 +38,7 @@ export const PasoTres = () => {
                         name="contrasena"
                         value={formData.contrasena}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border rounded outline-blue-500"
+                        className="w-full px-3 py-2 border rounded outline-blue-500 text-sm md:text-base"
                         minLength="8"
                         required
                     />
@@ -51,7 +52,7 @@ export const PasoTres = () => {
                         name="confirmContrasena"
                         value={formData.confirmContrasena}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border rounded outline-blue-500"
+                        className="w-full px-3 py-2 border rounded outline-blue-500 text-sm md:text-base"
                         minLength="8"
                         required
                     />

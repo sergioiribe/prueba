@@ -23,7 +23,7 @@ export const PasoDos = () => {
                                 value="true"
                                 checked={formData.anonimato === true}
                                 onChange={handleAnonimatoChange} // Usar handleAnonimatoChange aquí
-                                className="form-radio h-5 w-5 text-blue-600"
+                                className="form-radio h-5 w-5 text-blue-600 text-sm md:text-base"
                             />
                             <span className="ml-2">Sí</span>
                         </label>
@@ -35,7 +35,7 @@ export const PasoDos = () => {
                                 value="false"
                                 checked={formData.anonimato === false} // Verificar si es falso
                                 onChange={handleAnonimatoChange} // Usar handleAnonimatoChange aquí
-                                className="form-radio h-5 w-5 text-blue-600"
+                                className="form-radio h-5 w-5 text-blue-600 text-sm md:text-base"
                             />
                             <span className="ml-2">No</span>
                         </label>
@@ -47,7 +47,7 @@ export const PasoDos = () => {
                             <div className='w-full flex flex-col'>
                                 <label className="px-3 py-2">Nombre completo</label>
                                 <input
-                                    className="outline-blue-500 rounded text-center p-2 border-gray-300 border-2"
+                                    className="outline-blue-500 rounded text-center p-2 border-gray-300 border-2 text-sm md:text-base"
                                     type="text"
                                     name="nombre"
                                     value={formData.nombre}
@@ -57,7 +57,7 @@ export const PasoDos = () => {
                             <div className='w-full flex flex-col'>
                                 <label className="px-3 py-2">Correo electrónico</label>
                                 <input
-                                    className="outline-blue-500 rounded text-center p-2 border-gray-300 border-2"
+                                    className="outline-blue-500 rounded text-center p-2 border-gray-300 border-2 text-sm md:text-base"
                                     type="email"
                                     name="correo"
                                     value={formData.correo}
@@ -67,7 +67,7 @@ export const PasoDos = () => {
                             <div className='w-full flex flex-col mb-14 md:mb-0'>
                                 <label className='px-3 py-2'>Teléfono</label>
                                 <input
-                                    className='outline-blue-500 rounded text-center p-2 border-gray-300 border-2'
+                                    className='outline-blue-500 rounded text-center p-2 border-gray-300 border-2 text-sm md:text-base' 
                                     type="text"
                                     name="telefono"
                                     pattern="\d*"  // Este patrón solo permitirá ingresar dígitos
