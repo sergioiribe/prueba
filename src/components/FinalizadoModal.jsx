@@ -16,7 +16,7 @@ export const FinalizadoModal = ({ selectedFolio, closeModal, updateFolioFinaliza
     }
 
     const updatedComments = [...(selectedFolio.comentarios || []), newComment];
-    updateFolioFinalizado(selectedFolio.id, updatedComments, newComment);
+    updateFolioFinalizado(selectedFolio.id_denuncia, updatedComments, newComment);
     setNewComment("");
 
     Swal.fire({
@@ -29,12 +29,12 @@ export const FinalizadoModal = ({ selectedFolio, closeModal, updateFolioFinaliza
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-white p-8 rounded-md shadow-lg w-[80%] md:w-[40%] relative">
-        <h2 className="text-lg md:text-2xl font-bold mb-2">Detalles del Folio {selectedFolio.folio}</h2>
+        <h2 className="text-lg md:text-2xl font-bold mb-2">Folio {selectedFolio.folio}</h2>
         <p><strong>Empresa:</strong> {selectedFolio.empresa}</p>
         <p><strong>Estatus:</strong> {selectedFolio.estatus}</p>
 
         <div className="mt-4">
-          <h3 className="font-bold mb-2">Historial de Comentarios</h3>
+          <h3 className="font-bold mb-2">Historial de comentarios</h3>
           <ul className="list-disc ml-5">
             {selectedFolio.comentarios && selectedFolio.comentarios.length > 0 ? (
               selectedFolio.comentarios.map((comentario, index) => (
@@ -49,7 +49,7 @@ export const FinalizadoModal = ({ selectedFolio, closeModal, updateFolioFinaliza
         <div className="mt-4">
           <label className="block font-bold mb-2">Agregar nuevo comentario</label>
           <textarea
-            className="w-full p-2 border rounded outline-gray-300 mb-8"
+            className="w-full p-2 border rounded outline-gray-300 mb-8 resize-none h-32"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             placeholder="Escribe un comentario"

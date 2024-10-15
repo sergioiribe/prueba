@@ -29,7 +29,7 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
       );
 
       if (response.status === 200) {
-        updateFolio(selectedFolio.id, comment, tempStatus);
+        updateFolio(selectedFolio.id_denuncia, comment, tempStatus);
         setComment('');
         Swal.fire({
           icon: 'success',
@@ -51,11 +51,11 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-white p-8 rounded-md shadow-lg w-[80%] md:w-[40%] relative">
-        <h2 className="text-lg md:text-2xl font-bold mb-2">Editar Folio {selectedFolio.folio}</h2>
+        <h2 className="text-lg md:text-2xl font-bold mb-2">Folio {selectedFolio.folio}</h2>
         <p><strong>Empresa:</strong> {selectedFolio.empresa}</p>
 
         <div className="mt-4">
-          <h3 className="font-bold mb-2">Historial de Comentarios</h3>
+          <h3 className="font-bold mb-2">Historial de comentarios</h3>
           <ul className="list-disc ml-5">
             {Array.isArray(selectedFolio.comentarios) && selectedFolio.comentarios.length > 0 ? (
               selectedFolio.comentarios.map((comentario, index) => (
@@ -70,15 +70,16 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
         <div className="mt-4">
           <label className="block font-bold mb-2">Comentario</label>
           <textarea
-            className="w-full p-2 border rounded outline-gray-300"
+            className="w-full p-2 border rounded outline-gray-300 resize-none h-32"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="Agregar comentario"
+            rows={4}
           />
         </div>
 
         <div className="mt-4">
-          <label className="block font-bold mb-2">Cambiar Estatus</label>
+          <label className="block font-bold mb-2">Cambiar estatus</label>
           <select
             className="w-full p-2 border rounded mb-10 outline-gray-300"
             value={tempStatus}
@@ -96,7 +97,7 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
 
         <div className="absolute bottom-4 right-4 px-2">
           <button className="bg-[#3085d6] text-white p-2 rounded mr-2 outline-none" onClick={handleSave}>
-            Guardar Cambios
+            Guardar cambios
           </button>
         </div>
       </div>

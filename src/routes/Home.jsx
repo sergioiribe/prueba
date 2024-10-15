@@ -11,7 +11,7 @@ export const Home = () => {
                     {/* Imagen para pantallas pequeñas */}
                     <img src={coppelBlue} alt="Coppel" className="md:h-[9vh]" />
                 </picture>
-                <p className="text-white font-bold text-[20px]">LINEA DE DENUNCIA</p>
+                <p className="text-white font-bold text-[20px]">LÍNEA DE DENUNCIA</p>
         </div>
         <div className='flex flex-col md:flex-row h-[80vh] md:h-[70vh] justify-center items-center gap-10'>
             <NavLink to="/denuncia">

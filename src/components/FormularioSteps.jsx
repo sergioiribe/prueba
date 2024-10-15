@@ -21,12 +21,12 @@ export const FormularioSteps = () => {
                     {/* Imagen para pantallas pequeñas */}
                     <img src={coppelBlue} alt="Coppel" className="md:h-[9vh]" />
                 </picture>
-                <p className="text-white md:text-[#005fa8] font-bold text-[20px]">LINEA DE DENUNCIA</p>
+                <p className="text-white md:text-[#005fa8] font-bold text-[20px]">LÍNEA DE DENUNCIA</p>
             </div>
 
             {/* Contenedor principal */}
-            <div className="min-h-[80svh] md:min-h-[90vh] flex justify-start md:justify-center items-center flex-col md:bg-[#006eb5] bg-white relative">
-                <div className="bg-white w-[100%] md:w-[600px] md:rounded flex flex-col p-5">
+            <div className="min-h-[80svh] md:min-h-[90vh] flex justify-start md:justify-center items-center flex-col md:bg-[#006eb5] bg-white relative py-10">
+                <div className="bg-white w-[100%] md:w-[600px] md:rounded flex flex-col p-5 ">
                     {/* Barra de navegación para los pasos */}
                     <div className="flex justify-center gap-3 mb-6">
                         {steps.map((stepNum) => (

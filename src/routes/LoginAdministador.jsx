@@ -80,7 +80,7 @@ export const LoginAdministador = () => {
         <p className="text-white  font-bold text-[20px]">PORTAL ADMINISTRADOR</p>
       </div>
 
-      <div className="min-h-[80svh] md:h-[90vh] flex md:justify-center items-center flex-col bg-white p-10 md:bg-gray-300 ">
+      <div className="min-h-[80svh] md:h-[90vh] flex md:justify-center items-center flex-col bg-white md:p-10 md:bg-gray-300 p-2 ">
         <div className="w-full md:w-[450px] flex flex-col items-center gap-5 text-sm md:text-base md:bg-white p-5 rounded-md md:shadow-lg md:mb-40 z-0">
           
           <div className='w-full flex flex-col'>

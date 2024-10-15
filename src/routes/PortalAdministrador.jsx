@@ -24,10 +24,10 @@ export const PortalAdministrador = () => {
     };
 
     // Función para actualizar un folio pendiente
-    const updateFolio = (id, newComment, newStatus) => {
+    const updateFolio = (id_denuncia, newComment, newStatus) => {
         setFolios((prevFolios) =>
             prevFolios.map((folio) =>
-                folio.id === id
+                folio.id_denuncia === id_denuncia
                     ? {
                         ...folio,
                         comentarios: [...(folio.comentarios || []), newComment], // Verifica si comentarios es un array
@@ -45,7 +45,7 @@ export const PortalAdministrador = () => {
     };
 
     // Función para actualizar folios finalizados/cancelados
-    const updateFolioFinalizado = (id, updatedComments, newComment) => {
+    const updateFolioFinalizado = (id_denuncia, updatedComments, newComment) => {
         if (!newComment.trim()) {
             Swal.fire({
                 icon: 'error',
@@ -57,7 +57,7 @@ export const PortalAdministrador = () => {
 
         setFolios((prevFolios) =>
             prevFolios.map((folio) =>
-                folio.id === id
+                folio.id_denuncia === id_denuncia
                     ? {
                         ...folio,
                         comentarios: updatedComments, // Actualizar el historial de comentarios
@@ -106,7 +106,7 @@ export const PortalAdministrador = () => {
                 <div className="w-full md:w-[45%] flex flex-col items-center gap-5 text-sm md:text-base md:p-2 md:rounded">
                     <h2 className="font-bold text-lg">Folios pendientes</h2>
                     {folios.filter(folio => folio.estatus === 'Pendiente').map((folio) => (
-                        <div key={folio.id} className="w-full flex flex-row bg-gray-200 justify-around md:border-black md:border-2 p-2 rounded-md">
+                        <div key={folio.id_denuncia} className="w-full flex flex-row bg-gray-200 justify-around md:border-black md:border-2 p-2 rounded-md">
                             <div className="flex flex-col gap-2">
                                 <h1 className="font-bold">Folio</h1>
                                 <p>{folio.folio}</p>
@@ -131,7 +131,7 @@ export const PortalAdministrador = () => {
                 <div className="w-full md:w-[45%] flex flex-col items-center gap-5 text-sm md:text-base md:p-2 md:rounded">
                     <h2 className="font-bold text-lg">Folios finalizados / cancelados</h2>
                     {folios.filter(folio => folio.estatus === 'Finalizada' || folio.estatus === 'Cancelada').map((folio) => (
-                        <div key={folio.id} className="w-full flex flex-row bg-gray-200 justify-around md:border-black md:border-2 p-2 rounded-md">
+                        <div key={folio.id_denuncia} className="w-full flex flex-row bg-gray-200 justify-around md:border-black md:border-2 p-2 rounded-md">
                             <div className="flex flex-col gap-2">
                                 <h1 className="font-bold">Folio</h1>
                                 <p>{folio.folio}</p>
