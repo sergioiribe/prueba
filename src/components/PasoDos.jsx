@@ -43,7 +43,7 @@ export const PasoDos = () => {
 
                     {/* Mostrar los campos adicionales si el anonimato es falso */}
                     {formData.anonimato === false && (
-                        <div className="w-full flex flex-col">
+                        <div className="w-full flex flex-col pt-5 ">
                             <div className='w-full flex flex-col'>
                                 <label className="px-3 py-2">Nombre completo</label>
                                 <input
@@ -64,7 +64,7 @@ export const PasoDos = () => {
                                     onChange={handleChange} // Usar handleChange para estos campos
                                 />
                             </div>
-                            <div className='w-full flex flex-col mb-14 md:mb-0'>
+                            <div className='w-full flex flex-col mb-8 md:mb-0'>
                                 <label className='px-3 py-2'>Teléfono</label>
                                 <input
                                     className='outline-blue-500 rounded text-center p-2 border-gray-300 border-2 text-sm md:text-base' 

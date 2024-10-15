@@ -30,7 +30,7 @@ export const Resultado = () => {
             {/* Imagen para pantallas grandes */}
             <source srcSet={coppelWhite} media="(min-width: 768px)" />
             {/* Imagen para pantallas pequeñas */}
-            <img src={coppelBlue} alt="Coppel" className=" h-[5vh] md:h-[9vh]" />
+            <img src={coppelBlue} alt="Coppel" className="h-[10vh] md:h-[9vh]" />
           </picture>
         </NavLink>
         <p className="text-white md:text-[#005fa8] font-bold text-[20px]">SEGUIMIENTO DENUNCIA</p>
