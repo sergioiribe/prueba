@@ -90,7 +90,7 @@ export const PasoUno = () => {
                 <div className='w-full flex flex-col mb-14 md:mb-0'>
                     <label className='px-3 py-2'>Número de Centro</label>
                     <input
-                        className='outline-blue-500 rounded text-center p-2 border-gray-300 border-2 text-sm md:text-base'
+                        className='outline-blue-500 rounded text-center p-2 border-gray-300 border-2 text-base'
                         type="number"
                         name="centro"
                         value={formData.centro}

@@ -10,7 +10,7 @@ export const PasoTres = () => {
                 <div className='w-full flex flex-col'>
                     <label className='px-3 py-2'>Detalle de la denuncia</label>
                     <textarea
-                        className='outline-blue-500 rounded text-center p-2 border-gray-300 border-2 resize-none text-sm md:text-base'
+                        className='outline-blue-500 rounded text-center p-2 border-gray-300 border-2 resize-none text-base'
                         name="detalle"
                         value={formData.detalle}
                         onChange={handleChange}
@@ -27,7 +27,7 @@ export const PasoTres = () => {
                         value={formData.fecha_hechos}
                         onChange={handleChange}
                         max={new Date().toLocaleDateString('en-CA')}
-                        className="w-full px-3 py-2 border border-gray-300 rounded outline-blue-500 text-sm md:text-base bg-white appearance-none"
+                        className="w-full px-3 py-2 border border-gray-300 rounded outline-blue-500 text-base bg-white"
                         required
                     />
                 </div>
@@ -38,7 +38,7 @@ export const PasoTres = () => {
                         name="contrasena"
                         value={formData.contrasena}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border rounded outline-blue-500 text-sm md:text-base"
+                        className="w-full px-3 py-2 border rounded outline-blue-500 text-base"
                         minLength="8"
                         required
                     />
@@ -52,7 +52,7 @@ export const PasoTres = () => {
                         name="confirmContrasena"
                         value={formData.confirmContrasena}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border rounded outline-blue-500 text-sm md:text-base"
+                        className="w-full px-3 py-2 border rounded outline-blue-500 text-base"
                         minLength="8"
                         required
                     />
