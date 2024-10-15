@@ -1,22 +1,19 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import coppelBlue from '../assets/coppelBlue.png';
 import coppelWhite from '../assets/coppelWhite.png';
 import { useAuth } from '../context/AuthProvider';
-import Swal from 'sweetalert2'; 
-
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 export const Seguimiento = () => {
-  const validFolio = "12345";
-  const validContrasena = "12345678";
-
   const [denuncia, setDenuncia] = useState({
     folio: "",
     contrasena: ""
   });
 
   const navigate = useNavigate();
-  const { login } = useAuth(); // Utiliza el método login del contexto
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,28 +23,75 @@ export const Seguimiento = () => {
     });
   };
 
-  const handleSubmit = () => {
-
-    //Validar que no esten vacios
+  const handleSubmit = async () => {
+    // Validar que no estén vacíos
     if (denuncia.folio === "" || denuncia.contrasena === "") {
       Swal.fire({
         icon: 'info',
         text: 'Por favor completa todos los campos',
         confirmButtonColor: '#3085d6',
-    });
-    return;
+      });
+      return;
     }
 
-    if (denuncia.folio === validFolio && denuncia.contrasena === validContrasena) {
-      login(); // Llama a login para marcar al usuario como autenticado
-      navigate("/resultado"); // Redirige si los datos son correctos
-    } else {
-      Swal.fire({
-        icon: 'error',
-        text: 'Folio o contraseña incorrectos',
-        confirmButtonColor: '#3085d6',
-    });
-    return;
+    try {
+      // Limpiar localStorage antes de una nueva consulta
+      localStorage.removeItem('denuncia');
+
+      // Realizar la solicitud POST a la API con folio y contraseña
+      const response = await axios.post('https://java-railway-portal-denuncias-production.up.railway.app/api/denuncias/consultar', {
+        folio: denuncia.folio,
+        contrasena: denuncia.contrasena
+      });
+
+      // Si la respuesta es exitosa, almacena los datos en localStorage
+      if (response.status === 200) {
+        const denunciaData = response.data;
+
+        // Guardar la información de la denuncia en localStorage
+        localStorage.setItem('denuncia', JSON.stringify(denunciaData));
+
+        login(); // Llama a login para marcar al usuario como autenticado
+        navigate("/resultado"); // Redirige si los datos son correctos
+      }
+    } catch (error) {
+      // Manejar error si la API devuelve un error 404 o 401
+      if (error.response && error.response.status === 404) {
+        Swal.fire({
+          icon: 'error',
+          text: 'Folio no encontrado',
+          confirmButtonColor: '#d33',
+        });
+
+        setDenuncia({
+          usuario: "",
+          contrasena: ""
+        });
+      } else if (error.response && error.response.status === 401) {
+        Swal.fire({
+          icon: 'error',
+          text: 'Contraseña incorrecta',
+          confirmButtonColor: '#d33',
+        });
+
+        // limpiar campos de texto
+        setDenuncia({
+          usuario: "",
+          contrasena: ""
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          text: 'Hubo un problema al consultar la denuncia, intenta nuevamente más tarde',
+          confirmButtonColor: '#d33',
+        });
+
+        setDenuncia({
+          usuario: "",
+          contrasena: ""
+        });
+        console.error('Error al consultar la denuncia:', error);
+      }
     }
   };
 
@@ -56,7 +100,7 @@ export const Seguimiento = () => {
       <div className="bg-[#006eb5] md:bg-white flex h-[20vh] md:h-[10vh] w-100 justify-center items-center">
         <picture className='w-1/4 md:w-1/6'>
           <source srcSet={coppelWhite} media="(min-width: 768px)" />
-          <img src={coppelBlue} alt="Coppel" className="w-20" />
+          <img src={coppelBlue} alt="Coppel" className="md:h-[9vh]" />
         </picture>
         <p className="text-white md:text-[#005fa8] font-bold text-[20px]">SEGUIMIENTO A DENUNCIA</p>
       </div>

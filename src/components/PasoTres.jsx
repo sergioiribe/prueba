@@ -22,9 +22,10 @@ export const PasoTres = () => {
                     <label className="px-3 py-2">Fecha en la que sucedieron los hechos</label>
                     <input
                         type="date"
-                        name="fecha"
-                        value={formData.fecha}
+                        name="fecha_hechos"
+                        value={formData.fecha_hechos}
                         onChange={handleChange}
+                        max={new Date().toLocaleDateString('en-CA')} // Fecha actual en formato 'YYYY-MM-DD' considerando la zona horaria local
                         className="w-full px-3 py-2 border rounded outline-blue-500"
                         required
                     />
@@ -33,8 +34,8 @@ export const PasoTres = () => {
                     <label className="px-3 py-2">Crear contraseña</label>
                     <input
                         type="password"
-                        name="password"
-                        value={formData.password}
+                        name="contrasena"
+                        value={formData.contrasena}
                         onChange={handleChange}
                         className="w-full px-3 py-2 border rounded outline-blue-500"
                         minLength="8"
@@ -47,8 +48,8 @@ export const PasoTres = () => {
                     <label className="px-3 py-2">Confirmar contraseña</label>
                     <input
                         type="password"
-                        name="confirmPassword"
-                        value={formData.confirmPassword}
+                        name="confirmContrasena"
+                        value={formData.confirmContrasena}
                         onChange={handleChange}
                         className="w-full px-3 py-2 border rounded outline-blue-500"
                         minLength="8"

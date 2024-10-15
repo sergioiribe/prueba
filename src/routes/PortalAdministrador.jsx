@@ -1,129 +1,107 @@
 import { TbReportSearch } from "react-icons/tb";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AiFillQuestionCircle } from "react-icons/ai";
 import { PendienteModal } from "../components/PendienteModal";
 import { FinalizadoModal } from "../components/FinalizadoModal";
 import Swal from 'sweetalert2';
-
+import axios from 'axios'; 
 
 export const PortalAdministrador = () => {
-    // Datos simulados de folios de denuncias
-    const [folios, setFolios] = useState([
-        {
-            id: 1,
-            folio: '12345',
-            empresa: 'Afore Coppel',
-            estatus: 'Pendiente',
-            comentario: '',
-            historialDeComentarios: []  // Agregar historial de comentarios
-        },
-        {
-            id: 2,
-            folio: '67890',
-            empresa: 'BanCoppel',
-            estatus: 'Finalizada',
-            comentario: 'Se encontraron pruebas',
-            historialDeComentarios: ['Se encontraron pruebas']
-        },
-        {
-            id: 3,
-            folio: '54321',
-            empresa: 'Coppel',
-            estatus: 'Cancelada',
-            comentario: 'No se encontraron pruebas',
-            historialDeComentarios: ['No se encontraron pruebas']
-        },
-    ]);
-
-
-    // Estado para manejar el folio seleccionado y la visibilidad del modal
+    const [folios, setFolios] = useState([]);
     const [selectedFolio, setSelectedFolio] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // Función para abrir el modal y seleccionar el folio
+    // Abrir modal
     const openModal = (folio) => {
         setSelectedFolio(folio);
         setIsModalOpen(true);
     };
 
-    // Función para cerrar el modal
+    // Cerrar modal
     const closeModal = () => {
         setIsModalOpen(false);
         setSelectedFolio(null);
     };
 
+    // Función para actualizar un folio pendiente
     const updateFolio = (id, newComment, newStatus) => {
-
-
         setFolios((prevFolios) =>
             prevFolios.map((folio) =>
                 folio.id === id
                     ? {
                         ...folio,
-                        comentario: newComment, // Actualizamos el comentario actual
-                        estatus: newStatus,
-                        historialDeComentarios: [...folio.historialDeComentarios, newComment], // Añadimos el nuevo comentario al historial
+                        comentarios: [...(folio.comentarios || []), newComment], // Verifica si comentarios es un array
+                        estatus: newStatus, // Actualiza solo el estatus del folio seleccionado
                     }
-                    : folio
+                    : folio // Dejar los folios que no coincidan intactos
             )
         );
-        
+
         Swal.fire({
             icon: 'success',
             text: 'Cambio guardado correctamente',
             confirmButtonColor: '#3085d6',
         });
-        return;
-
     };
 
+    // Función para actualizar folios finalizados/cancelados
     const updateFolioFinalizado = (id, updatedComments, newComment) => {
-
         if (!newComment.trim()) {
             Swal.fire({
                 icon: 'error',
                 text: 'El comentario no puede estar vacío',
                 confirmButtonColor: '#d33',
             });
-            return; // Salimos de la función si el comentario está vacío
-            
+            return;
         }
-       
 
         setFolios((prevFolios) =>
             prevFolios.map((folio) =>
                 folio.id === id
                     ? {
                         ...folio,
-                        historialDeComentarios: updatedComments, // Actualizamos el historial
+                        comentarios: updatedComments, // Actualizar el historial de comentarios
                     }
                     : folio
             )
         );
 
-        
         closeModal();
         Swal.fire({
             icon: 'success',
             text: 'Comentario guardado correctamente',
             confirmButtonColor: '#3085d6',
         });
-        return;
-
-
     };
+
+    // Solicitar folios desde la API
+    useEffect(() => {
+        const fetchFolios = async () => {
+            try {
+                const response = await axios.get('https://java-railway-portal-denuncias-production.up.railway.app/api/denuncias/todas');
+                setFolios(response.data);
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Hubo un problema al obtener las denuncias',
+                    confirmButtonColor: '#d33',
+                });
+            }
+        };
+
+        fetchFolios();
+    }, []);
 
     return (
         <div className="w-screen">
             {/* Header */}
-            <div className="bg-gray-500 flex h-[20vh] md:h-[10vh] w-100 justify-center items-center gap-5">
+            <div className="bg-gray-500 flex h-[20vh] md:h-[10vh]  md:min-h-[60px] w-100 justify-center items-center gap-5">
                 <TbReportSearch color='white' size="40px" />
                 <p className="text-white font-bold text-[20px]">FOLIOS DE DENUNCIA</p>
             </div>
 
             {/* Contenido dividido en dos columnas */}
             <div className="min-h-[80svh] md:h-[90vh] flex md:justify-around items-start flex-col md:flex-row bg-white p-2 md:p-10 md:bg-gray-300 gap-5 md:gap-0">
-
                 {/* Columna Izquierda: Folios Pendientes */}
                 <div className="w-full md:w-[45%] flex flex-col items-center gap-5 text-sm md:text-base md:p-2 md:rounded">
                     <h2 className="font-bold text-lg">Folios pendientes</h2>
@@ -177,7 +155,7 @@ export const PortalAdministrador = () => {
 
             {/* Mostrar el modal adecuado según el estatus */}
             {isModalOpen && selectedFolio && (
-                <>
+                <div>
                     {selectedFolio.estatus === 'Pendiente' ? (
                         <PendienteModal
                             selectedFolio={selectedFolio}
@@ -191,10 +169,8 @@ export const PortalAdministrador = () => {
                             updateFolioFinalizado={updateFolioFinalizado}
                         />
                     )}
-                </>
+                </div>
             )}
-
-
         </div>
     );
 };

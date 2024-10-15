@@ -15,12 +15,9 @@ export const FinalizadoModal = ({ selectedFolio, closeModal, updateFolioFinaliza
       return;
     }
 
-    // Añadir el nuevo comentario al historial de comentarios
-    const updatedComments = [...(selectedFolio.historialDeComentarios || []), newComment];
+    const updatedComments = [...(selectedFolio.comentarios || []), newComment];
     updateFolioFinalizado(selectedFolio.id, updatedComments, newComment);
-
-    // Limpiar el comentario después de agregarlo
-    setNewComment(""); 
+    setNewComment("");
 
     Swal.fire({
       icon: 'success',
@@ -39,8 +36,8 @@ export const FinalizadoModal = ({ selectedFolio, closeModal, updateFolioFinaliza
         <div className="mt-4">
           <h3 className="font-bold mb-2">Historial de Comentarios</h3>
           <ul className="list-disc ml-5">
-            {selectedFolio.historialDeComentarios && selectedFolio.historialDeComentarios.length > 0 ? (
-              selectedFolio.historialDeComentarios.map((comentario, index) => (
+            {selectedFolio.comentarios && selectedFolio.comentarios.length > 0 ? (
+              selectedFolio.comentarios.map((comentario, index) => (
                 <li key={index}>{comentario}</li>
               ))
             ) : (
@@ -60,10 +57,7 @@ export const FinalizadoModal = ({ selectedFolio, closeModal, updateFolioFinaliza
         </div>
 
         <div className="absolute bottom-4 right-4 px-2">
-          <button
-            className="bg-[#3085d6] text-white p-2 rounded mr-2 outline-none"
-            onClick={handleAddComment}
-          >
+          <button className="bg-[#3085d6] text-white p-2 rounded mr-2 outline-none" onClick={handleAddComment}>
             Agregar comentario
           </button>
         </div>

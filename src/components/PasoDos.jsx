@@ -68,8 +68,10 @@ export const PasoDos = () => {
                                 <label className='px-3 py-2'>Teléfono</label>
                                 <input
                                     className='outline-blue-500 rounded text-center p-2 border-gray-300 border-2'
-                                    type="number"
+                                    type="text"
                                     name="telefono"
+                                    pattern="\d*"  // Este patrón solo permitirá ingresar dígitos
+                                    maxLength="15" 
                                     value={formData.telefono}
                                     onChange={handleChange} // Usar handleChange para estos campos
                                 />

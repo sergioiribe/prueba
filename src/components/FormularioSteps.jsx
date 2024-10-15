@@ -19,7 +19,7 @@ export const FormularioSteps = () => {
                     {/* Imagen para pantallas grandes */}
                     <source srcSet={coppelWhite} media="(min-width: 768px)" />
                     {/* Imagen para pantallas pequeñas */}
-                    <img src={coppelBlue} alt="Coppel" className="w-20" />
+                    <img src={coppelBlue} alt="Coppel" className="md:h-[9vh]" />
                 </picture>
                 <p className="text-white md:text-[#005fa8] font-bold text-[20px]">LINEA DE DENUNCIA</p>
             </div>

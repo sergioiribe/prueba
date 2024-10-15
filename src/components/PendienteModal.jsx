@@ -1,27 +1,51 @@
 import { useState } from 'react';
 import { RxCross2 } from "react-icons/rx";
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
-  // Estado para manejar el comentario y el estatus editable
   const [comment, setComment] = useState("");
   const [tempStatus, setTempStatus] = useState(selectedFolio.estatus);
 
+  const handleSave = async (event) => {
+    event.preventDefault();
 
-
-  const handleSave = () => {
     if (!comment.trim()) {
       Swal.fire({
-          icon: 'error',
-          text: 'El comentario no puede estar vacío',
-          confirmButtonColor: '#d33',
+        icon: 'error',
+        text: 'El comentario no puede estar vacío',
+        confirmButtonColor: '#d33',
       });
-      return; // Salimos de la función si el comentario está vacío
-  }
-    // Actualiza el folio con el nuevo comentario y estatus
-    updateFolio(selectedFolio.id, comment, tempStatus);
-    setComment("");; // Solo cierra el modal después de guardar
-    closeModal();
+      return;
+    }
+
+    try {
+      const response = await axios.put(
+        `https://java-railway-portal-denuncias-production.up.railway.app/api/denuncias/${selectedFolio.folio}/actualizar`,
+        {
+          comentarios: comment,
+          estatus: tempStatus,
+        }
+      );
+
+      if (response.status === 200) {
+        updateFolio(selectedFolio.id, comment, tempStatus);
+        setComment('');
+        Swal.fire({
+          icon: 'success',
+          text: 'Cambios guardados correctamente',
+          confirmButtonColor: '#3085d6',
+        }).then(() => {
+          closeModal();
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        text: 'Hubo un problema al guardar los cambios',
+        confirmButtonColor: '#d33',
+      });
+    }
   };
 
   return (
@@ -33,8 +57,8 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
         <div className="mt-4">
           <h3 className="font-bold mb-2">Historial de Comentarios</h3>
           <ul className="list-disc ml-5">
-            {selectedFolio.historialDeComentarios && selectedFolio.historialDeComentarios.length > 0 ? (
-              selectedFolio.historialDeComentarios.map((comentario, index) => (
+            {Array.isArray(selectedFolio.comentarios) && selectedFolio.comentarios.length > 0 ? (
+              selectedFolio.comentarios.map((comentario, index) => (
                 <li key={index}>{comentario}</li>
               ))
             ) : (
@@ -57,13 +81,12 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
           <label className="block font-bold mb-2">Cambiar Estatus</label>
           <select
             className="w-full p-2 border rounded mb-10 outline-gray-300"
-            name='estatus'
             value={tempStatus}
             onChange={(e) => setTempStatus(e.target.value)}
           >
-            <option className="bg-gray-100" value="Pendiente">Pendiente</option>
-            <option className="bg-gray-100" value="Finalizada">Finalizada</option>
-            <option className="bg-gray-100" value="Cancelada">Cancelada</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="Finalizada">Finalizada</option>
+            <option value="Cancelada">Cancelada</option>
           </select>
         </div>
 
@@ -72,11 +95,7 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
         </button>
 
         <div className="absolute bottom-4 right-4 px-2">
-          <button
-            className="bg-[#3085d6] text-white p-2 rounded mr-2 outline-none"
-            onClick={handleSave}
-      
-          >
+          <button className="bg-[#3085d6] text-white p-2 rounded mr-2 outline-none" onClick={handleSave}>
             Guardar Cambios
           </button>
         </div>
