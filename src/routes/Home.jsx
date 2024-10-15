@@ -4,7 +4,7 @@ import coppelBlue from '../assets/coppelBlue.png'
 export const Home = () => {
     return (
         <div className="">
-            <div className="bg-[#006eb5] md:bg-white flex h-[20vh] md:h-[10vh] w-100 justify-center items-center">
+            <div className="bg-[#006eb5] flex h-[20vh] md:h-[10vh] w-100 justify-center items-center gap-10">
                 <NavLink to="/">
                     <picture className='w-1/4 md:w-1/6'>
                         {/* Imagen para pantallas grandes */}
@@ -13,7 +13,7 @@ export const Home = () => {
                         <img src={coppelBlue} alt="Coppel" className=" h-[5vh] md:h-[9vh]" />
                     </picture>
                 </NavLink>
-                <p className="text-white md:text-[#005fa8] font-bold text-[20px]">LÍNEA DE DENUNCIA</p>
+                <p className="text-white font-bold text-[20px]">LÍNEA DE DENUNCIA</p>
             </div>
             <div className='flex flex-col md:flex-row h-[80vh] md:h-[70vh] justify-center items-center gap-10'>
                 <NavLink to="/denuncia">
