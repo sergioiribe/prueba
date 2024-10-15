@@ -8,7 +8,7 @@ export const RutaProtegidaPortal = ({children}) => {
 
     // Si el usuario no está autenticado, redirige al login
     if (!isAuthenticated) {
-      return <Navigate to="/loginAdministador" replace />;
+      return <Navigate to="/loginAdministrador" replace />;
     }
   
     // Si está autenticado, permite el acceso a la ruta protegida

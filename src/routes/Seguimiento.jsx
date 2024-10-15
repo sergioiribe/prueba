@@ -5,6 +5,7 @@ import coppelWhite from '../assets/coppelWhite.png';
 import { useAuth } from '../context/AuthProvider';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 export const Seguimiento = () => {
   const [denuncia, setDenuncia] = useState({
@@ -98,16 +99,20 @@ export const Seguimiento = () => {
   return (
     <div>
       <div className="bg-[#006eb5] md:bg-white flex h-[20vh] md:h-[10vh] w-100 justify-center items-center">
-        <picture className='w-1/4 md:w-1/6'>
-          <source srcSet={coppelWhite} media="(min-width: 768px)" />
-          <img src={coppelBlue} alt="Coppel" className="md:h-[9vh]" />
-        </picture>
+        <NavLink to="/">
+          <picture className='w-1/4 md:w-1/6'>
+            {/* Imagen para pantallas grandes */}
+            <source srcSet={coppelWhite} media="(min-width: 768px)" />
+            {/* Imagen para pantallas pequeñas */}
+            <img src={coppelBlue} alt="Coppel" className=" h-[5vh] md:h-[9vh]" />
+          </picture>
+        </NavLink>
         <p className="text-white md:text-[#005fa8] font-bold text-[20px]">SEGUIMIENTO A DENUNCIA</p>
       </div>
 
       <div className="min-h-[80svh] flex md:justify-center items-center flex-col bg-white p-10 md:bg-[#006eb5]">
         <div className="w-full md:w-1/2 lg:w-1/3 flex flex-col items-center gap-5 text-sm md:text-base md:bg-white p-5 rounded-md md:shadow-lg">
-          
+
           <div className='w-full flex flex-col'>
             <label className='px-3 py-2 text-black'>Folio</label>
             <input

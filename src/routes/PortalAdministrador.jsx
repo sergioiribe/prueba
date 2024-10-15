@@ -4,7 +4,8 @@ import { AiFillQuestionCircle } from "react-icons/ai";
 import { PendienteModal } from "../components/PendienteModal";
 import { FinalizadoModal } from "../components/FinalizadoModal";
 import Swal from 'sweetalert2';
-import axios from 'axios'; 
+import axios from 'axios';
+import { NavLink } from "react-router-dom";
 
 export const PortalAdministrador = () => {
     const [folios, setFolios] = useState([]);
@@ -96,7 +97,9 @@ export const PortalAdministrador = () => {
         <div className="w-screen">
             {/* Header */}
             <div className="bg-gray-500 flex h-[20vh] md:h-[10vh]  md:min-h-[60px] w-100 justify-center items-center gap-5">
-                <TbReportSearch color='white' size="40px" />
+                <NavLink to="/loginAdministrador">
+                    <TbReportSearch color='white' size="40px" />
+                </NavLink>
                 <p className="text-white font-bold text-[20px]">FOLIOS DE DENUNCIA</p>
             </div>
 

@@ -155,16 +155,6 @@ export const FormularioProvider = ({ children }) => {
         if (step === 1) {
             const centroNumber = parseFloat(formData.centro); // Convertir a número
 
-            // Validar el número del campo centro
-            if (isNaN(centroNumber) || centroNumber <= 0) {
-                Swal.fire({
-                    icon: 'info',
-                    text: 'Por favor ingresa un número de centro válido',
-                    confirmButtonColor: '#3085d6',
-                });
-                return; // Detener si hay errores
-            }
-
             // Validar que los campos de empresa, país, estado y centro estén completos
             if (formData.id_empresa === 0 || formData.id_pais === 0 || formData.id_estado === 0 || !formData.centro) {
                 Swal.fire({
@@ -175,7 +165,28 @@ export const FormularioProvider = ({ children }) => {
                 return; // Detener si hay errores
             }
 
-            
+            // Validar el número del campo centro
+            if (isNaN(centroNumber) || centroNumber <= 0) {
+                Swal.fire({
+                    icon: 'info',
+                    text: 'Por favor ingresa un número de centro válido',
+                    confirmButtonColor: '#3085d6',
+                });
+                return; // Detener si hay errores
+            }
+
+            if (centroNumber.length > 10) { // Compara si es mayor a 10
+                Swal.fire({
+                    icon: 'info',
+                    text: 'El centro no puede tener más de 10 números',
+                    confirmButtonColor: '#3085d6',
+                });
+                return; // Detener si hay errores
+            }
+
+
+
+
         }
 
         // Validar campos del Paso 2

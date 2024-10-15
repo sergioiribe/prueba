@@ -4,6 +4,7 @@ import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthProvider';
 import axios from 'axios'; // Importa Axios para realizar la solicitud HTTP
+import { NavLink } from 'react-router-dom';
 
 export const LoginAdministador = () => {
 
@@ -57,11 +58,11 @@ export const LoginAdministador = () => {
         });
 
         // limpiar campos de texto
-      setData({
-        usuario: "",
-        contrasena: ""
-      });
-      
+        setData({
+          usuario: "",
+          contrasena: ""
+        });
+
       } else {
         Swal.fire({
           icon: 'error',
@@ -76,13 +77,15 @@ export const LoginAdministador = () => {
   return (
     <div>
       <div className="bg-gray-500  flex h-[20vh] md:h-[10vh]  md:min-h-[60px]  w-100 justify-center items-center gap-5 z-10 sticky">
-        <RiAdminFill color='white' size="40px"/>
+        <NavLink to="/loginAdministrador">
+          <RiAdminFill color='white' size="40px" />
+        </NavLink>
         <p className="text-white  font-bold text-[20px]">PORTAL ADMINISTRADOR</p>
       </div>
 
       <div className="min-h-[80svh] md:h-[90vh] flex md:justify-center items-center flex-col bg-white md:p-10 md:bg-gray-300 p-2 ">
         <div className="w-full md:w-[450px] flex flex-col items-center gap-5 text-sm md:text-base md:bg-white p-5 rounded-md md:shadow-lg md:mb-40 z-0">
-          
+
           <div className='w-full flex flex-col'>
             <label className='px-3 py-2 text-black'>Usuario</label>
             <input
