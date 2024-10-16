@@ -1,5 +1,6 @@
 import { useFormulario } from "../context/FormularioProvider";
 
+
 export const PasoTres = () => {
 
     const { formData, handleChange } = useFormulario();
@@ -38,7 +39,7 @@ export const PasoTres = () => {
                         name="contrasena"
                         value={formData.contrasena}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border rounded outline-blue-500 text-base"
+                        className="w-full px-3 py-2 border-2 border-gray-300 rounded outline-blue-500 text-base bg-white"
                         minLength="8"
                         required
                     />
@@ -52,7 +53,7 @@ export const PasoTres = () => {
                         name="confirmContrasena"
                         value={formData.confirmContrasena}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border rounded outline-blue-500 text-base"
+                        className="w-full px-3 border-2 py-2  border-gray-300 rounded outline-blue-500 text-base bg-white"
                         minLength="8"
                         required
                     />

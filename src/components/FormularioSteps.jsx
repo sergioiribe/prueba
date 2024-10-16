@@ -5,6 +5,7 @@ import { useFormulario } from '../context/FormularioProvider';
 import coppelBlue from '../assets/coppelBlue.png';
 import coppelWhite from '../assets/coppelWhite.png';
 import { NavLink } from 'react-router-dom';
+import '../index.css';
 
 
 export const FormularioSteps = () => {

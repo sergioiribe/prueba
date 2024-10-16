@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input[type=date] {
+    border: 2px solid #d1d5db; /* Borde negro */
+    background-color: white; /* Fondo blanco */
+    padding: 0.75rem; /* Espaciado interno */
+    box-sizing: border-box; /* Asegura que el padding se incluya dentro del tamaño del input */
+    width: 100%; /* Toma el ancho completo del contenedor */
+  }
+  
+  input[type=date]::-webkit-calendar-picker-indicator {
+    color: black; /* Puedes cambiar el color si lo necesitas */
+    cursor: pointer;
+  }
+  
+  input[type=date]::placeholder {
+    color: gray; /* Cambia el color del placeholder si lo necesitas */
+  }
+  
