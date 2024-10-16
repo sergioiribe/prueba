@@ -81,7 +81,7 @@ export const PasoUno = () => {
                             <option className='p-2' value={0}>Selecciona un estado</option>
                             <option className='p-2' value={3}>Aguascalientes</option>
                             <option className='p-2' value={4}>Campeche</option>
-                            <option className='p-2' value={5}>Cdmx</option>
+                            <option className='p-2' value={5}>CDMX</option>
                         </select>
                     </div>
                 )}

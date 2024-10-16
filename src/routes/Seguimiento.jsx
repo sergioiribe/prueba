@@ -111,7 +111,7 @@ export const Seguimiento = () => {
       </div>
 
       <div className="min-h-[80svh] md:min-h-[90svh] flex md:justify-center items-center flex-col bg-white p-10 md:bg-[#006eb5]">
-        <div className="w-full md:w-1/2 lg:w-1/3 flex flex-col items-center gap-5 text-sm md:text-base md:bg-white md:p-5 rounded-md md:shadow-lg">
+        <div className="w-full md:w-30vw lg:w-1/4 flex flex-col items-center gap-5 text-sm md:text-base md:bg-white md:p-5 rounded-md md:shadow-lg">
 
           <div className='w-full flex flex-col'>
             <label className='px-3 py-2 text-black'>Folio</label>

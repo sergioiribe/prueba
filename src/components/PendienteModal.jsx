@@ -12,9 +12,9 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
 
     if (!comment.trim()) {
       Swal.fire({
-        icon: 'error',
+        icon: 'info',
         text: 'El comentario no puede estar vacío',
-        confirmButtonColor: '#d33',
+        confirmButtonColor: '#3085d6',
       });
       return;
     }
@@ -54,7 +54,12 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
         <h2 className="text-lg md:text-2xl font-bold mb-2">Folio {selectedFolio.folio}</h2>
         <p><strong>Empresa:</strong> {selectedFolio.empresa}</p>
 
-        <div className="mt-4">
+        {/* Mostrar detalles adicionales de la denuncia */}
+        <div>
+          <p><strong>Detalle:</strong> {selectedFolio.detalle}</p>
+        </div>
+
+        <div>
           <h3 className="font-bold mb-2">Historial de comentarios</h3>
           <ul className="list-disc ml-5">
             {Array.isArray(selectedFolio.comentarios) && selectedFolio.comentarios.length > 0 ? (
@@ -70,7 +75,7 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
         <div className="mt-4">
           <label className="block font-bold mb-2">Comentario</label>
           <textarea
-            className="w-full p-2 border rounded outline-gray-300 resize-none h-32"
+            className="w-full p-2 border rounded outline-gray-300 resize-none h-16"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder="Agregar comentario"

@@ -49,9 +49,9 @@ export const PortalAdministrador = () => {
     const updateFolioFinalizado = (id_denuncia, updatedComments, newComment) => {
         if (!newComment.trim()) {
             Swal.fire({
-                icon: 'error',
+                icon: 'info',
                 text: 'El comentario no puede estar vacío',
-                confirmButtonColor: '#d33',
+                confirmButtonColor: '#3085d6',
             });
             return;
         }
@@ -109,7 +109,7 @@ export const PortalAdministrador = () => {
                 <div className="w-full md:w-[45%] flex flex-col items-center gap-5 text-sm md:text-base md:p-2 md:rounded">
                     <h2 className="font-bold text-lg">Folios pendientes</h2>
                     {folios.filter(folio => folio.estatus === 'Pendiente').map((folio) => (
-                        <div key={folio.id_denuncia} className="w-full flex flex-row bg-gray-200 justify-around md:border-black md:border-2 p-2 rounded-md">
+                        <div key={folio.id_denuncia} className="w-[92%] flex flex-row bg-gray-200 justify-around md:border-black md:border-2 p-2 rounded-md">
                             <div className="flex flex-col gap-2">
                                 <h1 className="font-bold">Folio</h1>
                                 <p>{folio.folio}</p>
@@ -131,10 +131,10 @@ export const PortalAdministrador = () => {
                 </div>
 
                 {/* Columna Derecha: Folios Finalizados/Cancelados */}
-                <div className="w-full md:w-[45%] flex flex-col items-center gap-5 text-sm md:text-base md:p-2 md:rounded px-2">
+                <div className="w-full md:w-[45%] flex flex-col items-center gap-5 text-sm md:text-base md:p-2 md:rounded">
                     <h2 className="font-bold text-lg">Folios finalizados / cancelados</h2>
                     {folios.filter(folio => folio.estatus === 'Finalizada' || folio.estatus === 'Cancelada').map((folio) => (
-                        <div key={folio.id_denuncia} className="w-full flex flex-row bg-gray-200 justify-around md:border-black md:border-2 p-2 rounded-md">
+                        <div key={folio.id_denuncia} className="w-[92%] flex flex-row bg-gray-200 justify-around md:border-black md:border-2 p-2 rounded-md">
                             <div className="flex flex-col gap-2">
                                 <h1 className="font-bold">Folio</h1>
                                 <p>{folio.folio}</p>
