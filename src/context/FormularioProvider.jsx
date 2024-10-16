@@ -22,7 +22,7 @@ export const FormularioProvider = ({ children }) => {
         id_estado: 0,
         centro: '',
         detalle: '',
-        fecha_hechos: '',
+        fecha_hechos: new Date().toLocaleDateString('en-CA'), // Fecha actual en hora local en formato 'YYYY-MM-DD'
         contrasena: '',
         confirmContrasena: '', // Solo para validación en el frontend
         anonimato: true,
@@ -31,6 +31,7 @@ export const FormularioProvider = ({ children }) => {
         telefono: '',
         comentarios: [],
     });
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -54,7 +55,7 @@ export const FormularioProvider = ({ children }) => {
         // Validar que la fecha de los hechos no sea mayor a la fecha actual
         if (formData.fecha_hechos > today) {
             Swal.fire({
-                icon: 'error',
+                icon: 'info',
                 text: 'La fecha de los hechos no puede ser mayor al día de hoy',
                 confirmButtonColor: '#3085d6',
             });
