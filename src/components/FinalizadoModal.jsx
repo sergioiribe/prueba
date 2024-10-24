@@ -18,30 +18,39 @@ export const FinalizadoModal = ({ selectedFolio, closeModal, updateFolioFinaliza
       return;
     }
 
+    // Log para verificar el cuerpo de la solicitud
+    console.log("Datos enviados:", {
+      comentario: comment,
+    });
+
     try {
       const response = await axios.put(
-        `https://java-railway-portal-denuncias-production.up.railway.app/api/denuncias/${selectedFolio.folio}/actualizar`,
+        `https://java-railway-portal-denuncias-production.up.railway.app/api/denuncias/${selectedFolio.folio}/agregarComentario`,
         {
-          comentarios: [...selectedFolio.comentarios, comment], // Agrega el nuevo comentario al historial
-          estatus: selectedFolio.estatus, // Mantén el estatus actual
-        }
+          comentario: comment, // Enviar solo el nuevo comentario
+        },
       );
 
       if (response.status === 200) {
-        updateFolioFinalizado(selectedFolio.id_denuncia, [...selectedFolio.comentarios, comment], comment);
+        updateFolioFinalizado(
+          selectedFolio.id_denuncia,
+          [...selectedFolio.comentarios, comment],
+          comment
+        );
         setComment('');
         Swal.fire({
           icon: 'success',
-          text: 'Comentario guardado correctamente',
+          text: 'Comentario agregado correctamente',
           confirmButtonColor: '#3085d6',
         }).then(() => {
           closeModal();
         });
       }
     } catch (error) {
+      console.error("Error en la solicitud PUT:", error); // Log del error
       Swal.fire({
         icon: 'error',
-        text: 'Hubo un problema al guardar el comentario',
+        text: 'Hubo un problema al agregar el comentario',
         confirmButtonColor: '#d33',
       });
     }
@@ -54,8 +63,7 @@ export const FinalizadoModal = ({ selectedFolio, closeModal, updateFolioFinaliza
         <p><strong>Empresa:</strong> {selectedFolio.empresa}</p>
 
         {/* Mostrar detalles adicionales de la denuncia */}
-        <div >
-          <p><strong>Centro:</strong> {selectedFolio.centro}</p>
+        <div>
           <p><strong>Detalle:</strong> {selectedFolio.detalle}</p>
         </div>
 
@@ -89,7 +97,7 @@ export const FinalizadoModal = ({ selectedFolio, closeModal, updateFolioFinaliza
 
         <div className="absolute bottom-3 right-4 px-2">
           <button className="bg-[#3085d6] text-white p-2 rounded mr-2 outline-none" onClick={handleSave}>
-            Guardar comentario
+            Guardar comentarios
           </button>
         </div>
       </div>

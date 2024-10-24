@@ -71,6 +71,14 @@ export const FormularioProvider = ({ children }) => {
             return;
         }
 
+        if (formData.contrasena.includes(' ')) {
+            Swal.fire({
+                icon: 'info',
+                text: 'La contraseña no puede contener espacios en blanco',
+            });
+            return;
+        }
+
         // Validar que la longitud de la contraseña sea de al menos 8 caracteres
         if (formData.contrasena.length < 8) {
             Swal.fire({

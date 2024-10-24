@@ -10,6 +10,7 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
   const handleSave = async (event) => {
     event.preventDefault();
 
+    console.log("Datos enviados:", selectedFolio)
     if (!comment.trim()) {
       Swal.fire({
         icon: 'info',
@@ -53,7 +54,6 @@ export const PendienteModal = ({ selectedFolio, closeModal, updateFolio }) => {
       <div className="bg-white p-8 rounded-md shadow-lg w-[80%] md:w-[40%] relative">
         <h2 className="text-lg md:text-2xl font-bold mb-2">Folio {selectedFolio.folio}</h2>
         <p><strong>Empresa:</strong> {selectedFolio.empresa}</p>
-
         {/* Mostrar detalles adicionales de la denuncia */}
         <div>
           <p><strong>Detalle:</strong> {selectedFolio.detalle}</p>
